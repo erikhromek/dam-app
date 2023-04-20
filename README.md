@@ -1,5 +1,10 @@
 # DAM - API & Web app Híbrida
 
+## Prerequisitos:
+
+- Node (preferentemente >=16)
+- Angular CLI
+- Ionic CLI
 
 ## API
 
