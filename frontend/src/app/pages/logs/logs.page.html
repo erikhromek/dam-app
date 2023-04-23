@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="document-lock-outline" size="large" color="primary"></ion-icon>
+    </ion-buttons>
+    <ion-title>Valve Logs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="none">
+    <ng-container *ngIf="logs$ | async as logs">
+      <ng-container *ngIf="logs.length; else noDataTemplate">
+        <ng-container *ngFor="let log of logs">
+          <ion-item>
+            <ion-label>
+              {{log.date  | date:"hh:mm:ss dd/MM/yy" }} - Valve {{ log.opened? 'Opened' : 'Closed' }}
+              </ion-label>
+          </ion-item>
+        </ng-container> 
+      </ng-container>
+
+    <ng-template #noDataTemplate>
+      <ion-content [fullscreen]="true">
+      No logs!
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-content>
+    </ng-template>
+
+    </ng-container>
+    <ng-container *ngIf="(isLoading$ | async) === true">
+      <ion-text>Loading logs...
+      <ion-spinner></ion-spinner></ion-text>
+    </ng-container>
+  </ion-list>
+</ion-content>
